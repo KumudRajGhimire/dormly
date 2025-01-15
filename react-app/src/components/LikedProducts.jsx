@@ -26,49 +26,51 @@ function LikedProducts() {
                 }
             })
             .catch((err) => {
-                alert('Server Err.')
-            })
-    }, [])
+                alert('Server Err.');
+            });
+    }, []);
 
     const handlesearch = (value) => {
         setsearch(value);
-    }
+    };
 
     const handleClick = () => {
         let filteredProducts = products.filter((item) => {
-            if (item.pname.toLowerCase().includes(search.toLowerCase()) ||
+            if (
+                item.pname.toLowerCase().includes(search.toLowerCase()) ||
                 item.pdesc.toLowerCase().includes(search.toLowerCase()) ||
-                item.category.toLowerCase().includes(search.toLowerCase())) {
+                item.category.toLowerCase().includes(search.toLowerCase())
+            ) {
                 return item;
             }
-        })
-        setcproducts(filteredProducts)
-    }
+        });
+        setcproducts(filteredProducts);
+    };
 
     const handleCategory = (value) => {
-        let filteredProducts = products.filter((item, index) => {
-            if (item.category == value) {
+        let filteredProducts = products.filter((item) => {
+            if (item.category === value) {
                 return item;
             }
-        })
-        setcproducts(filteredProducts)
-    }
+        });
+        setcproducts(filteredProducts);
+    };
 
     const handleLike = (productId) => {
         let userId = localStorage.getItem('userId');
 
         const url = API_URL + '/like-product';
-        const data = { userId, productId }
+        const data = { userId, productId };
         axios.post(url, data)
             .then((res) => {
                 if (res.data.message) {
-                    alert('Liked.')
+                    alert('Liked.');
                 }
             })
             .catch((err) => {
-                alert('Server Err.')
-            })
-    }
+                alert('Server Err.');
+            });
+    };
 
     return (
         <div>
@@ -76,21 +78,21 @@ function LikedProducts() {
             {/* Render Categories only if we're not on the LikedProducts page */}
             {location.pathname !== '/liked-products' && <Categories handleCategory={handleCategory} />}
 
-            <h5> SEARCH RESULTS </h5>
+            <h5> FAVOURITE PRODUCTS </h5>
             <div className="d-flex justify-content-center flex-wrap">
                 {cproducts && products.length > 0 &&
                     cproducts.map((item, index) => {
                         return (
                             <div key={item._id} className="card m-3">
                                 <div onClick={() => handleLike(item._id)} className="icon-con">
-                                    <FaHeart className="icons" />
+                                    <FaHeart className="icons red-icon" /> {/* Red heart */}
                                 </div>
                                 <img width="300px" height="200px" src={API_URL + '/' + item.pimage} />
                                 <p className="m-2"> {item.pname} | {item.category} </p>
                                 <h3 className="m-2 text-danger"> {item.price} </h3>
                                 <p className="m-2 text-success"> {item.pdesc} </p>
                             </div>
-                        )
+                        );
                     })}
             </div>
 
@@ -101,18 +103,18 @@ function LikedProducts() {
                         return (
                             <div key={item._id} className="card m-3">
                                 <div onClick={() => handleLike(item._id)} className="icon-con">
-                                    <FaHeart className="icons" />
+                                    <FaHeart className="icons red-icon" /> {/* Red heart */}
                                 </div>
                                 <img width="300px" height="200px" src={API_URL + '/' + item.pimage} />
                                 <p className="m-2"> {item.pname} | {item.category} </p>
                                 <h3 className="m-2 text-danger"> {item.price} </h3>
                                 <p className="m-2 text-success"> {item.pdesc} </p>
                             </div>
-                        )
+                        );
                     })}
             </div>
         </div>
-    )
+    );
 }
 
 export default LikedProducts;

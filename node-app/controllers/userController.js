@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 var jwt = require('jsonwebtoken');
 
+//create database schema
 const Users = mongoose.model('Users', {
     username: String,
     mobile: String,
@@ -9,6 +10,8 @@ const Users = mongoose.model('Users', {
     likedProducts: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Products' }]
 });
 
+
+//like  the product in home page
 module.exports.likeProducts = (req, res) => {
     let productId = req.body.productId;
     let userId = req.body.userId;
@@ -53,6 +56,7 @@ module.exports.signup = (req, res) => {
 
 }
 
+//fetch the information about profile from database
 module.exports.myProfileById = (req, res) => {
     let uid = req.params.userId
 
@@ -91,7 +95,7 @@ module.exports.getUserById = (req, res) => {
         })
 }
 
-
+//handles login: if matches logs in else doesnt log in
 module.exports.login = (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
@@ -120,6 +124,7 @@ module.exports.login = (req, res) => {
 
 }
 
+//liked product page00
 module.exports.likedProducts = (req, res) => {
 
     Users.findOne({ _id: req.body.userId }).populate('likedProducts')

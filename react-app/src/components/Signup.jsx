@@ -12,8 +12,32 @@ function Signup() {
     const [email, setEmail] = useState("");
     const [mobile, setMobile] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [fieldErrors, setFieldErrors] = useState({});
+
+    const validateEmail = (email) =>
+        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    const validateMobile = (mobile) =>
+        /^[6-9]\d{9}$/.test(mobile);
+
+    const validatePassword = (password) =>
+        password.length >= 6;
+
+    const validateForm = () => {
+        const errors = {};
+
+        if (!username) errors.username = "Username is required.";
+        if (!validateEmail(email)) errors.email = "Invalid email format.";
+        if (!validateMobile(mobile)) errors.mobile = "Invalid mobile number.";
+        if (!validatePassword(password)) errors.password = "Password must be at least 6 characters long.";
+
+        setFieldErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
 
     const handleApi = () => {
+        if (!validateForm()) return;
+
         const url = API_URL + "/signup";
         const data = { username, password, email, mobile };
         axios
@@ -31,8 +55,6 @@ function Signup() {
                 setErrorMessage("Server error. Please try again.");
             });
     };
-
-    const isFormValid = () => username && password && email && mobile;
 
     return (
         <div className="signup-page">
@@ -64,6 +86,7 @@ function Signup() {
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
                         />
+                        {fieldErrors.username && <small className="error-text">{fieldErrors.username}</small>}
                     </div>
                     <div className="input-group">
                         <input
@@ -73,6 +96,7 @@ function Signup() {
                             value={mobile}
                             onChange={(e) => setMobile(e.target.value)}
                         />
+                        {fieldErrors.mobile && <small className="error-text">{fieldErrors.mobile}</small>}
                     </div>
                     <div className="input-group">
                         <input
@@ -82,6 +106,7 @@ function Signup() {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
+                        {fieldErrors.email && <small className="error-text">{fieldErrors.email}</small>}
                     </div>
                     <div className="input-group">
                         <input
@@ -91,13 +116,13 @@ function Signup() {
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
+                        {fieldErrors.password && <small className="error-text">{fieldErrors.password}</small>}
                     </div>
 
                     {/* Signup Button */}
                     <button
                         className="btn signup-btn"
                         onClick={handleApi}
-                        disabled={!isFormValid()}
                     >
                         Sign Up
                     </button>

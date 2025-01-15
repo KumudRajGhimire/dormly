@@ -2,7 +2,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #ffff3f; /* Yellow-2 */
+    background-color: #f9f9fb;
     font-family: Arial, sans-serif;
     height: 100vh;
 }
@@ -22,7 +22,7 @@ body {
 .welcome-header {
     text-align: center;
     font-size: 2rem;
-    color: #ffd400; /* Matches the Login Card header color */
+    color: #333; /* Matches the Login Card header color */
     margin-bottom: 20px;
     font-weight: bold;
     animation: fadeIn 1.5s ease-in-out;
@@ -54,7 +54,7 @@ body {
 
 /* Login Card Styling */
 .login-card {
-    background-color: #dedddd;
+    background-color: #fff;
     padding: 2.5rem;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -68,7 +68,7 @@ body {
 /* Header Text in Login Card */
 .login-card h1 {
     font-size: 2rem;
-    color: #000000; /* Viridian */
+    color: #333; /* Same color as Welcome Header */
     margin-bottom: 1.5rem;
 }
 
@@ -97,8 +97,8 @@ body {
 
 .input-group .form-control:focus {
     outline: none;
-    border-color: #f2f6f0; /* Kelly Green */
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); /* Kelly Green */
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
 }
 
 /* Login Button */
@@ -106,7 +106,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #00a6ff; /* Sea Green */
+    background-color: #0D92F4; /* Google Blue */
     color: #fff;
     width: 100%;
     padding: 12px;
@@ -119,7 +119,7 @@ body {
 }
 
 .login-btn:hover {
-    background-color: #0cbde0; /* Apple Green */
+    background-color: #28a3fc; /* Darker Google Blue */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
     transform: translateY(-2px); /* Slight lift on hover */
 }
@@ -148,8 +148,7 @@ body {
     padding: 12px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background-color: #ffbe0b; /* Amber */
-    color: #333;
+    background-color: #fff;
 }
 
 .social-btn img {
@@ -159,7 +158,7 @@ body {
 }
 
 .social-btn:hover {
-    background-color: #d4d700; /* Pear-2 */
+    background-color: #f1f1f1;
 }
 
 /* Sign Up Text */
@@ -169,7 +168,7 @@ body {
 }
 
 .signup-text a {
-    color: #ff2727; /* Yellow Green */
+    color: #4285f4; /* Same blue as login button */
     text-decoration: none;
     font-weight: bold;
 }
@@ -180,31 +179,31 @@ body {
 
 /* Browse without logging in button */
 .browse-btn {
-    background-color: #4b4b4b; /* Pear-3 */
-    color: #dfdfdf; /* Dark text */
-    border: 2px solid #acacac; /* Pear */
-    padding: 10px 20px;
-    border-radius: 5px;
-    font-size: 16px;
-    text-transform: uppercase;
-    cursor: pointer;
-    text-align: center;
-    width: 100%;
-    margin-top: 5px;
-    transition: all 0.3s ease;
+    background-color: #333;        /* Dark grey background */
+    color: #fff;                   /* White text */
+    border: 2px solid #555;        /* Medium grey border */
+    padding: 10px 20px;            /* Vertical and horizontal padding */
+    border-radius: 5px;            /* Slightly rounded corners */
+    font-size: 16px;               /* Standard font size */
+    text-transform: uppercase;     /* Capitalize text */
+    cursor: pointer;               /* Pointer cursor on hover */
+    text-align: center;            /* Center the text */
+    width: 100%;                   /* Full width of container */
+    margin-top: 0px;              /* Space above the button */
+    transition: all 0.3s ease;     /* Smooth transition for hover effects */
 }
 
 /* Hover effect */
 .browse-btn:hover {
-    background-color: #acacac; /* Apple Green */
-    border-color: #4b4b4b; /* Kelly Green */
-    color: #fff;
+    background-color: #555;        /* Lighter grey on hover */
+    border-color: #777;            /* Light grey border on hover */
+    color: #f0f0f0;                /* Slightly lighter text color */
 }
 
 /* Optional: Button container for spacing and alignment */
 .browse-btn-container {
     display: flex;
-    justify-content: center;
+    justify-content: center;       /* Center the button horizontally */
     align-items: center;
-    margin-top: 5px;
+    margin-top: 5px;              /* Space from other elements */
 }

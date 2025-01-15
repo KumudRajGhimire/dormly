@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaBell } from "react-icons/fa"; // Import FaBell for the notification icon
 import { useState, useEffect, useRef } from "react";
 
 function Header(props) {
     const [loc, setLoc] = useState(localStorage.getItem("userLoc") || null);
     const [showOver, setShowOver] = useState(false);
+    const [hasNewNotifications, setHasNewNotifications] = useState(true); // State for the red dot on notifications
 
     const categories = [
         "Stationaries",
@@ -92,6 +93,12 @@ function Header(props) {
         { latitude: 13.031180542421236, longitude: 77.56717365522184, placeName: "Nilgiri Men's Hostel, MSRIT" }
     ];
 
+    // Handle notification click
+    const handleNotificationClick = () => {
+        alert("You have new notifications."); // Display alert
+        setHasNewNotifications(false); // Hide the red dot
+    };
+
     return (
         <div className="header-container">
             {/* Left Section */}
@@ -127,8 +134,21 @@ function Header(props) {
                     className="search-btn"
                     onClick={() => props.handleClick && props.handleClick()}
                 >
-                    <FaSearch />
+                    <FaSearch style={{ color: "#0D92F4" }} />
                 </button>
+            </div>
+
+            {/* Notification Button */}
+            <div className="notification-section">
+                <div className="notification-icon-container">
+                    <FaBell
+                        className="notification-icon"
+                        onClick={handleNotificationClick}
+                        title="Notifications"
+                        style={{ color: "#261818" }}
+                    />
+                    {hasNewNotifications && <span className="notification-dot"></span>} {/* Red dot */}
+                </div>
             </div>
 
             {/* Profile Section */}

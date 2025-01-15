@@ -71,14 +71,6 @@ function CategoryPage() {
                 alert('Server Err.')
             })
 
-        // let filteredProducts = products.filter((item) => {
-        //     if (item.pname.toLowerCase().includes(search.toLowerCase()) ||
-        //         item.pdesc.toLowerCase().includes(search.toLowerCase()) ||
-        //         item.category.toLowerCase().includes(search.toLowerCase())) {
-        //         return item;
-        //     }
-        // })
-        // setcproducts(filteredProducts)
 
     }
 

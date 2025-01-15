@@ -22,7 +22,7 @@ let schema = new mongoose.Schema({
     }
 })
 
-schema.index({ pLoc: '2dsphere' });
+schema.index({ pLoc: '2dsphere' });//geoJSON library
 
 const Products = mongoose.model('Products', schema);
 

@@ -266,3 +266,7 @@ h5 {
   transition: opacity 0.3s ease;
 }
 
+.red-icon {
+  color: red;
+  cursor: pointer;
+}
