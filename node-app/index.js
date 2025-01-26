@@ -8,6 +8,7 @@ const { Server } = require("socket.io");
 const productController = require('./controllers/productController');
 const userController = require('./controllers/userController');
 
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'uploads');

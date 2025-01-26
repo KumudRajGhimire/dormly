@@ -1,12 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import API_URL from "../constants";
 import "./Login.css";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import dormlyIllustration from "./Dormly-animated.gif";
-
-// Import social login libraries
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
 
 function Login() {
@@ -14,11 +12,10 @@ function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-    
-    // Typing effect state
     const [welcomeText, setWelcomeText] = useState('');
     const welcomeMessage = "Welcome to Dormly!";
-    
+    const vantaRef = useRef(null); // Reference for the Vanta effect container
+
     useEffect(() => {
         let i = 0;
         const typeEffect = setInterval(() => {
@@ -28,10 +25,37 @@ function Login() {
                 clearInterval(typeEffect);
             }
         }, 100);
-        
+
         return () => clearInterval(typeEffect);
     }, []);
-    
+
+    useEffect(() => {
+        // Initialize Vanta.js Birds effect
+        const vantaEffect = window.VANTA.BIRDS({
+            el: vantaRef.current,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0xffffff,
+            color1: 0x0, // black color
+            color2: 0x0, // black color
+            wingSpan: 36.00,
+            speedLimit: 3.00,
+            separation: 100.00,
+            alignment: 25.00,
+            quantity: 2.00, // Increase number of birds
+        });
+
+        // Cleanup on component unmount
+        return () => {
+            if (vantaEffect) vantaEffect.destroy();
+        };
+    }, []);
+
     const handleApi = () => {
         const url = `${API_URL}/login`;
         const data = { username, password };
@@ -56,7 +80,6 @@ function Login() {
 
     const handleGoogleSuccess = (credentialResponse) => {
         console.log(credentialResponse);
-        // Send credentialResponse.credential to the backend for verification
     };
 
     const handleGoogleFailure = () => {
@@ -65,7 +88,7 @@ function Login() {
 
     return (
         <GoogleOAuthProvider clientId="YOUR_GOOGLE_CLIENT_ID">
-            <div className="login-page">
+            <div ref={vantaRef} className="login-page">
                 {/* Typing Effect for Welcome Header */}
                 <div className="welcome-header">
                     <h2>{welcomeText}</h2>

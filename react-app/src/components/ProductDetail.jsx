@@ -6,6 +6,9 @@ import './ProductDetail.css';
 import Header from "./Header";
 import API_URL from "../constants";
 import io from 'socket.io-client';
+import gpayLogo from './gpay.png';
+import phonepeLogo from './phonepe.png';
+
 
 let socket;
 
@@ -58,6 +61,11 @@ function ProductDetail() {
         });
     }
     setShowContact(!showContact);
+  };
+
+  const handlePayment = (method) => {
+    alert(`Initiating payment using ${method}. This feature will be integrated soon.`);
+    // Here you can integrate respective SDKs or APIs for GPay or PhonePe.
   };
 
   const handleSendMessage = () => {
@@ -124,6 +132,35 @@ function ProductDetail() {
                   <h4>{user.username}</h4>
                   <p>{user.mobile}</p>
                   <p>{user.email}</p>
+
+                  {/* Payment Options */}
+                  <div className="payment-options mt-3">
+  <h5>Payment Options:</h5>
+  <div className="d-flex gap-3 align-items-center">
+    <button
+      className="btn btn-outline-success payment-button d-flex align-items-center gap-2"
+      onClick={() => handlePayment("GPay")}
+    >
+      <img
+        src={gpayLogo}
+        alt="GPay"
+        className="payment-logo"
+      />
+      GPay
+    </button>
+    <button
+      className="btn btn-outline-primary payment-button d-flex align-items-center gap-2"
+      onClick={() => handlePayment("PhonePe")}
+    >
+      <img
+        src={phonepeLogo}
+        alt="PhonePe"
+        className="payment-logo"
+      />
+      PhonePe
+    </button>
+  </div>
+</div>
                 </div>
               )}
 

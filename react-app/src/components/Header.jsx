@@ -2,11 +2,14 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { FaSearch, FaBell } from "react-icons/fa"; // Import FaBell for the notification icon
 import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import API_URL from "../constants"; // Ensure this is correct
 
 function Header(props) {
     const [loc, setLoc] = useState(localStorage.getItem("userLoc") || null);
     const [showOver, setShowOver] = useState(false);
     const [hasNewNotifications, setHasNewNotifications] = useState(true); // State for the red dot on notifications
+    const [user, setUser] = useState({}); // State to store user data
 
     const categories = [
         "Stationaries",
@@ -27,6 +30,21 @@ function Header(props) {
     const cooldownTime = 3000; // Cooldown time before changing category
 
     const navigate = useNavigate();
+
+    // Fetch user data
+    useEffect(() => {
+        let url = API_URL + "/my-profile/" + localStorage.getItem("userId");
+        axios
+            .get(url)
+            .then((res) => {
+                if (res.data.user) {
+                    setUser(res.data.user); // Set the user data in state
+                }
+            })
+            .catch((err) => {
+                alert("Server Error.");
+            });
+    }, []); // Run only once when the component mounts
 
     // Handle logout functionality
     const handleLogout = () => {
@@ -90,7 +108,8 @@ function Header(props) {
         { latitude: 12.940430758768843, longitude: 77.56481021979333, placeName: "International Hostel, BMSCE" },
         { latitude: 12.940299426324318, longitude: 77.56562529957633, placeName: "National Girls Hostel, BMSCE" },
         { latitude: 13.03294912219995, longitude: 77.56437005192409, placeName: "MSR Boys Hostel, MSRIT" },
-        { latitude: 13.031180542421236, longitude: 77.56717365522184, placeName: "Nilgiri Men's Hostel, MSRIT" }
+        { latitude: 13.031180542421236, longitude: 77.56717365522184, placeName: "Nilgiri Men's Hostel, MSRIT" },
+        { latitude: 130.031180542421236, longitude: 3.56717365522184, placeName: "Random Hostel, Somewhere" }
     ];
 
     // Handle notification click
@@ -134,7 +153,7 @@ function Header(props) {
                     className="search-btn"
                     onClick={() => props.handleClick && props.handleClick()}
                 >
-                    <FaSearch style={{ color: "#0D92F4" }} />
+                    <FaSearch style={{ color: "rgb(255 255 255)" }} />
                 </button>
             </div>
 
@@ -157,13 +176,17 @@ function Header(props) {
                     className="user-icon"
                     onClick={() => setShowOver(!showOver)}
                 >
-                    N
+                    {user.username ? user.username[0].toUpperCase() : "U"} {/* Display the first letter of username */}
                 </div>
 
                 {showOver && (
                     <div className="profile-dropdown">
                         {!!localStorage.getItem("token") && (
                             <>
+                                <span className="dropdown-username">Logged in as {user.username}</span> {/* Show username */}
+                                <Link to="/my-profile">
+                                    <button className="dropdown-btn">MY PROFILE</button>
+                                </Link>
                                 <Link to="/add-product">
                                     <button className="dropdown-btn">ADD PRODUCT</button>
                                 </Link>

@@ -15,7 +15,8 @@ function Signup() {
     const [fieldErrors, setFieldErrors] = useState({});
 
     const validateEmail = (email) =>
-        /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        /^[a-zA-Z0-9._%+-]+@bmsce\.ac\.in$/.test(email);
+    
 
     const validateMobile = (mobile) =>
         /^[6-9]\d{9}$/.test(mobile);
@@ -92,7 +93,7 @@ function Signup() {
                         <input
                             className="form-control"
                             type="text"
-                            placeholder="Mobile"
+                            placeholder="Mobile (10 digits)"
                             value={mobile}
                             onChange={(e) => setMobile(e.target.value)}
                         />
@@ -102,7 +103,7 @@ function Signup() {
                         <input
                             className="form-control"
                             type="email"
-                            placeholder="Email"
+                            placeholder="Email (@bmsce.ac.in)"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
@@ -112,7 +113,7 @@ function Signup() {
                         <input
                             className="form-control"
                             type="password"
-                            placeholder="Password"
+                            placeholder="Password (6 characters or more)"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />

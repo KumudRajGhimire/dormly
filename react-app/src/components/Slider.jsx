@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import './Slider.css';
 
 // Import images
-import slider1 from './slider1.png';
+import slider1 from './slider1.gif';
 import slider2 from './slider2.png';
-import slider3 from './slider3.png';
+import slider3 from './slider3.gif';
 
 const Slider = () => {
   const sliderImages = [slider1, slider2, slider3];  // Added the 3rd image

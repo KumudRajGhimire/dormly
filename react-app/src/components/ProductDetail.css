@@ -214,3 +214,38 @@ body {
   .chat-input button:hover {
     background-color: #000000;
   }
+
+  .payment-options {
+    text-align: left;
+  }
+  
+  .payment-options h5 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .payment-options .d-flex {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .payment-button {
+    padding: 5px 12px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .payment-button:hover {
+    transform: scale(1.05);
+  }
+  
+  .payment-logo {
+    width: 30px;
+    height: 30px;
+  }
+  
+  

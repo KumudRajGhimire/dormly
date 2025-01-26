@@ -1,0 +1,63 @@
+.edit-product-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.edit-product-card {
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.edit-product-heading {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-section {
+    margin-bottom: 15px;
+}
+
+.form-section label {
+    font-weight: bold;
+    color: #555;
+}
+
+.image-section {
+    margin-bottom: 20px;
+}
+
+.image-upload {
+    margin-bottom: 10px;
+}
+
+.image-preview {
+    display: block;
+    margin-top: 10px;
+    width: 100px;
+    height: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}

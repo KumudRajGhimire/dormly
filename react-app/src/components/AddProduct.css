@@ -4,10 +4,12 @@
   flex-direction: column;
   background-color: #f3f4f6;
   font-family: "Poppins", sans-serif;
-  padding: 0rem;
-  margin-top: 0px;
-
+  padding: 0;
+  margin: 0;
+  width: 100vw; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
 }
+
 
 /* Form Wrapper */
 .form-wrapper {
